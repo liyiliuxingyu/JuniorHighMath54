@@ -11,136 +11,11 @@
 \usetikzlibrary{angles,calc}
 \usepackage{subfigure}
 \usepackage{yhmath}
+\usepackage{zwfh}
 \allowdisplaybreaks
-\ctexset{
-    section={
-        name={第,节},
-        number=\arabic{section},
-        },
-        subsection={
-            name={第,课时},
-            number=\arabic{subsection},
-        }
-    }
-\DeclareSymbolFont{ugmL}{OMX}{mdugm}{m}{n}
-\DeclareMathAccent{\yhu}{\mathord}{ugmL}{"F3}
+\ctexset{section={name={第,节},number=\arabic{section},},subsection={name={第,课时},number=\arabic{subsection},}}
 \geometry{paper=a4paper,left=28mm,right=28mm,top=28mm,bottom=28mm}
 \usetikzlibrary{calc}
-%平行 	
-\newcommand\pxx{%
-\mathrel{\tikz[baseline] \draw (0em,-0.3ex) -- (.4em,1.7ex) (.2em,-0.3ex) -- (.6em,1.7ex);%
-}}
-%平行且等于	
-\newcommand*\pxqdy{%
-\mathrel{
-    \tikz[baseline]
-    \draw (.1em,0ex) -- (.9em,0ex)
-    (.1em,-.25ex) -- (.9em,-.25ex)
-    (.375em,.1ex) -- (.675em,1.5ex)
-    (.525em,.1ex) -- (.825em,1.5ex);%
-}}
-%新的平行且等于
-\newcommand*\pxdy{%
-\mathrel{
-    \tikz[baseline]
-    \draw (.1em,0ex) -- (.9em,0ex)
-    (.1em,.3ex) -- (.9em,.3ex)
-    (.375em,.4ex) -- (.675em,1.8ex)
-    (.55em,.4ex) -- (.85em,1.8ex);}%
-}	
-%相似
-\newcommand*\xiangs{%
-\mathrel{%
-        \tikz \draw[baseline] (-.25em,1.15ex) .. controls (-.55em,1.15ex) and (-.51em,.23ex) .. (-.275em,.23ex) .. controls (0,.23ex) and (0,1.15ex) .. (.275em,1.15ex) .. controls (.51em,1.15ex) and (.55em,.23ex) .. (.25em,.23ex);%
-}}
-%全等
-\newcommand*\quand{%
-\mathrel{%
-        \tikz \draw[baseline] (-.2em,1.35ex) .. controls (-.46em,1.6ex) and (-.54em,.65ex) .. (-.25em,.65ex) .. controls (-.06em,.65ex) and (.06em,1.35ex) .. (.25em,1.35ex) .. controls (.54em,1.35ex) and (.46em,.4ex) .. (.2em,.65ex) (-.46em,.4ex) -- (.46em,.4ex) (-.46em,0ex) -- (.46em,0ex);%
-}}
-%中文真子集 	
-\newcommand*\zhziji{%
-\mathrel{\tikz
-        \draw[baseline] (.6636em,1.57ex) -- (.192em,1.57ex) arc (90:270:0.4022ex) -- (.6636em,.7674ex) (0,.2558ex) -- (.6636em,.2558ex) (0,.5116ex) -- (.6636em,.5116ex) (.2323em,0ex) -- (.4313em,.7674ex);%
-}%
-}
-%中文子集
-\newcommand*\ziji{%
-\mathrel{\raisebox{.15ex}{\tikz
-            \draw[baseline] (.6636em,1.57ex) -- (.20235em,1.57ex) arc (90:270:0.4797ex) -- (.6636em,.61ex) (0,.305ex) -- (.6636em,.305ex);%
-}}%
-}	
-%中文反向子集 	
-\newcommand*\zijif{%
-\mathrel{\raisebox{.15ex}{\tikz
-            \draw[baseline] (-.6636em,1.57ex) -- (-.20235em,1.57ex) arc (90:-90:0.4797ex) -- (-.6636em,.61ex) (-.6636em,.305ex) -- (0,.305ex);%
-}}%
-}
-
-%中文反向真子集	
-\newcommand*\zhzijif{%
-\mathrel{\tikz
-        \draw[baseline] (-.6636em,1.57ex) -- (-.192em,1.57ex) arc (90:-90:0.4022ex) -- (-.6636em,.7674ex) (0,.2558ex) -- (-.6636em,.2558ex) (0,.5116ex) -- (-.6636em,.5116ex) (-.4313em,0ex) -- (-.2323em,.7674ex);%
-}%
-}
-%平行四边形
-\newcommand*\Pxsbx[1][1]{%
-\mathord{%
-        \tikz[baseline,scale=#1]
-        \draw (0,.1ex) -- (.8em,.1ex) -- (1em,1.4ex) -- (.2em,1.4ex) -- cycle;}}
-\newcommand*\pxsbx{
-\mathchoice{\Pxsbx}{\Pxsbx}{\Pxsbx[0.6]}{\Pxsbx[0.4]}
-}
-% 圆符号的重新定制
-\newcommand*\Odot[1][1.1]{
-\mathord{%
-        \tikz[baseline,scale=#1]
-        {\draw(0,0.32em) circle(0.35em);
-        \fill(0,0.32em) circle(0.7pt);}
-}
-}
-\renewcommand*\odot{
-\mathchoice{\Odot}{\Odot}{\Odot[0.7]}{\Odot[0.7]}
-}
-%%圆弧
-\def\wideparen#1{\mathord{
-\begin{tikzpicture}
-\node[inner sep=0pt] (a) {$#1$};
-\fill (a.north west)[bend left=25]to(a.north east)
-[bend right=33]to(a.north west);
-\end{tikzpicture}
-}
-}
-%%带箭头的弧
-\def\xwideparen#1{\mathord{
-\begin{tikzpicture}
-\node[inner sep=0pt] (a) {$#1$};
-\fill (a.north west)[bend left=25]to(a.north east)
-[bend right=33]to(a.north west);
-\draw[line width=0pt,-{Stealth[width=1.8pt]}](a.north west)[bend left=29]to(a.north east);
-\end{tikzpicture}
-}
-}
-%%集合的势，顶部双横线，
-\def\xbar#1{\mathord{
-\begin{tikzpicture}
-\node[inner sep=0pt](a){$#1$};
-\draw([shift={(0.2ex,0.2ex)}]a.north west)--
-([shift={(-0.2ex,0.2ex)}]a.north east);
-\draw([shift={(0.2ex,0.5ex)}]a.north west)--
-([shift={(-0.2ex,0.5ex)}]a.north east);
-\end{tikzpicture}
-}
-}
-%%带箭头的帽子
-\def\xhat#1{\mathord{
-\begin{tikzpicture}
-\node[inner sep=0pt](a){$#1$};
-\draw[{Stealth[width=0.4ex,length=0.5ex]}-{Stealth[width=0.4ex,length=0.5ex]}]
-([shift={(0.6ex,0.2ex)}]a.north west)--++(0,1ex)--([shift={(-0.6ex,1.2ex)}]a.north east)--++(0,-1ex);
-\end{tikzpicture}
-}
-}
 \begin{document}
 \title{鲁教版五四制初中数学}
 \author{李毅}
@@ -171,7 +46,8 @@
 \section{有理数}
 \par 为了表示具有相反意义的量，我们可把其中一个规定为正的，用正数来表示，而把与这个量意义相反的量规定为负的，用负数来表示.
 \par 整数与分数统称为{\heiti 有理数}.
-\par \vspace{\baselineskip}
+\par
+\vspace{\baselineskip}
 \[有理数
     \begin{cases}
         整数\smash[t]{\begin{cases}
@@ -495,7 +371,7 @@
         \tkzDefPoint(-3,0){B}
         \tkzDefCircle(O,B)
         \tkzGetLength{rB}
-        \tkzDefPointOnCircle[R= angle 105 center O radius \rB]
+        \tkzDefPointOnCircle[R=angle 105 center O radius \rB]
         \tkzGetPoint{A}
         \tkzDrawCircle(O,A)
         \tkzDrawSegment(A,O)
@@ -697,17 +573,17 @@
 \par {\heiti 内错角相等，两直线平行.\par 同旁内角互补，两直线平行.}
 \par
 $\begin{pmatrix}
-        两条直线被第三条直线所截，如果内错角相等，那么这两直线平行. \\两条直线被第三条直线所截，如果同旁内角互补，那么这两直线平行.
-    \end{pmatrix}$
+    两条直线被第三条直线所截，如果内错角相等，那么这两直线平行.\\两条直线被第三条直线所截，如果同旁内角互补，那么这两直线平行.
+\end{pmatrix}$
 \section{平行线的性质}
 \subsection{}
 \par {\heiti 两直线平行，同位角相等.\par 两直线平行，内错角相等.\par 两直线平行，同旁内角互补.}
-\par
+\par 
 $\begin{pmatrix}
-        两条平行直线被第三条直线所截，同位角相等. \\
-        两条平行直线被第三条直线所截，内错角相等. \\
-        两条平行直线被第三条直线所截，同旁内角互补.
-    \end{pmatrix}$
+    两条平行直线被第三条直线所截，同位角相等.\\
+    两条平行直线被第三条直线所截，内错角相等.\\
+    两条平行直线被第三条直线所截，同旁内角互补.
+\end{pmatrix}$
 \subsection{}
 \section{用尺规作角}
 \chapter{数据的收集与整理}
@@ -755,7 +631,7 @@ $\begin{pmatrix}
         \tkzLabelPoints[above](A)
         \tkzLabelSegment[below,pos=.5](B,C){$a$}
         \tkzLabelSegment[left,pos=.5](A,B){$c$}
-        \tkzLabelSegment[right=.15cm,pos=.5](A,C){$b$}
+        \tkzLabelSegment[right=.2cm,pos=.5](A,C){$b$}
     \end{tikzpicture}
     \caption{三角形}
     \label{fig:triangle}
@@ -770,65 +646,65 @@ $\begin{pmatrix}
         \begin{tikzpicture}[scale=.7]
             \draw (0,0)--(3,0)--(2,2.5)--(0,0);
         \end{tikzpicture}
-                            &
+                         &
         \begin{tikzpicture}[scale=.8]
             \draw (0,0) coordinate(A)--(5,0) coordinate(B)--(1,2) coordinate(C)--(0,0)
             pic [draw, angle radius=5pt, angle eccentricity=.8]{right angle = B--C--A};
         \end{tikzpicture}
-                            &
+                         &
         \begin{tikzpicture}
             \draw(0,0)--(5,0)--(1,1.5)--(0,0);
         \end{tikzpicture}
         \\
         \hline
-        {\heiti 锐角三角形} & {\heiti 直角三角形} & {\heiti 钝角三角形} \\
-        三个内角都是锐角    & 有一个内角是直角    & 有一个内角是钝角    \\
+        {\heiti 锐角三角形}       & {\heiti 直角三角形}     & {\heiti 钝角三角形}       \\
+        三个内角都是锐角 & 有一个内角是直角 & 有一个内角是钝角 \\
         \hline
     \end{tabular}
 \end{table}
 \par 通常，我们用符号“$\mathrm{Rt}\triangle ABC$”表示“直角三角形$ABC$”. 如图\ref{fig:RtABC}，把直角所对应的边称为直角三角形的斜边，夹直角边的两条边称为直角边.
 \begin{figure}[htbp]
     \begin{minipage}[b]{.5\linewidth}
-        \centering
-        \begin{tikzpicture}
-            \tkzDefPoints{0/0/A,7/0/B}
-            \tkzDefCircle[diameter](A,B)
-            \tkzGetPoint{O}
-            \tkzGetLength{rOA}
-            \tkzDefPointOnCircle[R=angle 110 center O radius \rOA]
-            \tkzGetPoint{C}
-            \tkzDrawPolygon(A,B,C)
-            \tkzMarkRightAngle(A,C,B)
-            \tkzLabelPoints[right](B)
-            \tkzLabelPoints[left](A)
-            \tkzLabelPoints[above](C)
-            \tkzLabelSegment[below](A,B){斜边}
-            \tkzLabelSegment[above left](A,C){直角边}
-            \tkzLabelSegment[above right](C,B){直角边}
-        \end{tikzpicture}
-        \caption{直角三角形}
-        \label{fig:RtABC}
+    \centering
+    \begin{tikzpicture}
+        \tkzDefPoints{0/0/A,7/0/B}
+        \tkzDefCircle[diameter](A,B)
+        \tkzGetPoint{O}
+        \tkzGetLength{rOA}
+        \tkzDefPointOnCircle[R=angle 110 center O radius \rOA]
+        \tkzGetPoint{C}
+        \tkzDrawPolygon(A,B,C)
+        \tkzMarkRightAngle(A,C,B)
+        \tkzLabelPoints[right](B)
+        \tkzLabelPoints[left](A)
+        \tkzLabelPoints[above](C)
+        \tkzLabelSegment[below](A,B){斜边}
+        \tkzLabelSegment[above left](A,C){直角边}
+        \tkzLabelSegment[above right](C,B){直角边}
+    \end{tikzpicture}
+    \caption{直角三角形}
+    \label{fig:RtABC}
     \end{minipage}
     \medskip
     \begin{minipage}[b]{.5\linewidth}
-        \centering
-        \begin{tikzpicture}
-            \tkzDefPoints{0/0/A,5/0/B,2.5/5/C}
-            \tkzDrawPolygon(A,B,C)
-            \tkzLabelSegment[below](A,B){底边}
-            \tkzLabelSegment[above left](A,C){腰}
-            \tkzLabelSegment[above right](C,B){腰}
-            \tkzMarkAngles[size=.5cm,mark=none](A,C,B B,A,C C,B,A)
-            \tkzLabelAngle(A,C,B){顶角}
-            \tkzLabelAngles(B,A,C C,B,A){底角}
-        \end{tikzpicture}
-        \caption{等腰三角形}
-        \label{fig:isosceles_triangle(IT)}
+    \centering
+    \begin{tikzpicture}
+        \tkzDefPoints{0/0/A,5/0/B,2.5/5/C}
+        \tkzDrawPolygon(A,B,C)
+        \tkzLabelSegment[below](A,B){底边}
+        \tkzLabelSegment[above left](A,C){腰}
+        \tkzLabelSegment[above right](C,B){腰}
+        \tkzMarkAngles[size=.5cm,mark=none](A,C,B B,A,C C,B,A)
+        \tkzLabelAngle(A,C,B){顶角}
+        \tkzLabelAngles(B,A,C C,B,A){底角}
+    \end{tikzpicture}
+    \caption{等腰三角形}
+    \label{fig:isosceles_triangle(IT,等腰三角形)}
     \end{minipage}
 \end{figure}
 \par {\heiti 直角三角形的两个锐角互余.}
 \subsection{}
-\par 有两边相等的三角形叫做等腰三角形，如图\ref{fig:isosceles_triangle(IT)}.
+\par 有两边相等的三角形叫做等腰三角形，如图\ref{fig:isosceles_triangle(IT,等腰三角形)}.
 \par 三边都相等的三角形叫做等边三角形，也叫作正三角形.
 \par 两条边相等的直角三角形叫做等腰直角三角形.
 \par {\heiti 三角形任意两边之和大于第三边.}
@@ -877,11 +753,11 @@ $\begin{pmatrix}
         \label{fig:三角形角平分线}
     \end{minipage}
 \end{figure}
-\par {\heiti 三角形的三条中线交于一点.}  这个点叫做三角形的{\heiti 重心}.
-\par 在三角形中，一个内角的角平分线与它的对边相交，这个角的顶点与交点之间的线段叫做{\heiti 三角形的角平分线}. 如图\ref{fig:三角形角平分线}，$AD$ 是 $\triangle ABC$的一条角平分线.
+\par {\heiti 三角形的三条中线交于一点.} 这个点叫做三角形的{\heiti 重心}.
+\par 在三角形中，一个内角的角平分线与它的对边相交，这个角的顶点与交点之间的线段叫做{\heiti 三角形的角平分线}. 如图\ref{fig:三角形角平分线}，$AD$是$\triangle ABC$的一条角平分线.
 \par {\heiti 三角形的三条角平分线交于一点.}
 \subsection{}
-从三角形的一个顶点向它的对边所在直线作垂线，顶点和垂线之间的线段叫做{\heiti 三角形的高线}，简称{\heiti 三角形的高}.如图\ref{fig:三角形高}，线段$AF$是$\triangle ABC$的$BC$边上的高.
+从三角形的一个顶点向它的对边所在直线作垂线，顶点和垂线之间的线段叫做{\heiti 三角形的高线}，简称{\heiti 三角形的高}. 如图\ref{fig:三角形高}，线段$AF$是$\triangle ABC$的$BC$边上的高.
 \begin{figure}[htbp]
     \centering
     \begin{tikzpicture}
@@ -902,7 +778,7 @@ $\begin{pmatrix}
 \par {\heiti 三角形的三条高所在的直线交于一点.}
 \section{图形的全等}
 \par 能够完全重合的两个图形称为{\heiti 全等图形}.
-\par {\heiti 全等图形的形状和大小都相同.}
+\par {\heiti 全等图形的形状大小完全都相同.}
 \par {\heiti 全等三角形的对应边相等，对应角相等.}
 \section{探索三角形全等的条件}
 \par 
